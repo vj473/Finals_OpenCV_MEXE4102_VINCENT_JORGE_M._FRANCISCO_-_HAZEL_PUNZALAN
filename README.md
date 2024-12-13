@@ -585,58 +585,135 @@ else:
 
 
 ```
-# Convert to graycsale
-img_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-# Blur the image for better edge detection
-img_blur = cv2.GaussianBlur(img_gray, (3,3), 0)
-```
+import cv2
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Define a function for Sobel edge detection and display
+def process_and_display(image, title):
+    # Convert to grayscale
+    img_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+    # Blur the image for better edge detection
+    img_blur = cv2.GaussianBlur(img_gray, (3, 3), 0)
+
+    # Apply Sobel edge detection
+    sobelx = cv2.Sobel(src=img_blur, ddepth=cv2.CV_64F, dx=1, dy=0, ksize=5)  # Sobel X
+    sobely = cv2.Sobel(src=img_blur, ddepth=cv2.CV_64F, dx=0, dy=1, ksize=5)  # Sobel Y
+    sobelxy = cv2.Sobel(src=img_blur, ddepth=cv2.CV_64F, dx=1, dy=1, ksize=5)  # Sobel X + Y
+
+    # Convert the Sobel results to 8-bit for displaying
+    sobelx = cv2.convertScaleAbs(sobelx)  # Convert to absolute values and 8-bit
+    sobely = cv2.convertScaleAbs(sobely)
+    sobelxy = cv2.convertScaleAbs(sobelxy)
+
+    # Plot the results
+    plt.figure(figsize=(18, 18))
+
+    # Display original image
+    plt.subplot(221)
+    plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))  # Show the original image
+    plt.title(f'Original Image - {title}')
+    plt.axis("off")
+
+    # Display Sobel X + Y image
+    plt.subplot(222)
+    plt.imshow(sobelxy, cmap='gray')
+    plt.title(f'Sobel X Y - {title}')
+    plt.axis("off")
+
+    # Display Sobel X image
+    plt.subplot(223)
+    plt.imshow(sobelx, cmap='gray')
+    plt.title(f'Sobel X - {title}')
+    plt.axis("off")
+
+    # Display Sobel Y image
+    plt.subplot(224)
+    plt.imshow(sobely, cmap='gray')
+    plt.title(f'Sobel Y - {title}')
+    plt.axis("off")
+
+    plt.show()
+
+# Assuming image1 and image2 are already loaded successfully (e.g., using cv2.imread)
+# Process and display the first image
+process_and_display(image1, "Image 1")
+
+# Process and display the second image
+process_and_display(image2, "Image 2")
+
+![image](https://github.com/user-attachments/assets/1edb0a9b-6841-40ec-b1be-b0e0f70d4549)
+![image](https://github.com/user-attachments/assets/a4ad517f-f258-4fc4-9245-42612f2e5436)
+
 
 ```
-sobelx = cv2.Sobel(src=image, ddepth=cv2.CV_64F, dx=1, dy=0, ksize=5)
+import cv2
+import matplotlib.pyplot as plt
+import os
 
-sobely = cv2.Sobel(src=image, ddepth=cv2.CV_64F, dx=0, dy=1, ksize=5)
+# Check the current working directory
+print("Current Working Directory:", os.getcwd())
 
-sobelxy = cv2.Sobel(src=image, ddepth=cv2.CV_64F, dx=1, dy=1, ksize=5)
+# Define the relative paths to the images (adjust this based on where your images are located)
+image1_path = "asong lubo.jpg"
+image2_path = "wolf.jpg"
 
-plt.figure(figsize=(18,19))
-plt.subplot(221)
-plt.imshow(image, cmap='gray')
-plt.title('Original')
-plt.axis("off")
+# Print absolute paths to verify them
+print("Absolute Path for Image 1:", os.path.abspath(image1_path))  # Corrected to image1_path
+print("Absolute Path for Image 2:", os.path.abspath(image2_path))  # Corrected to image2_path
 
-plt.subplot(222)
-plt.imshow(sobelxy, cmap='gray')
-plt.title('Sobel X Y')
-plt.axis("off")
+# Function to load an image and check if it exists
+def load_image(image_path):
+    if not os.path.exists(image_path):
+        print(f"File does not exist: {image_path}")
+        return None
+    else:
+        print(f"Loading image from: {image_path}")  # Print to confirm the path
+        image = cv2.imread(image_path)
+        return image
 
-plt.subplot(223)
-plt.imshow(sobelx, cmap='gray')
-plt.title('Sobel X')
-plt.axis("off")
+# Load the images
+image1 = load_image(image1_path)
+image2 = load_image(image2_path)
 
-plt.subplot(224)
-plt.imshow(sobely, cmap='gray')
-plt.title('Sobel Y')
-plt.axis("off")
+# Check if images were loaded successfully before proceeding
+if image1 is None or image2 is None:
+    print("Error: One or both images could not be loaded. Please check the paths.")
+else:
+    # Apply Canny edge detection on both images
+    edges1 = cv2.Canny(image=image1, threshold1=100, threshold2=200)
+    edges2 = cv2.Canny(image=image2, threshold1=100, threshold2=200)
+
+    # Display the original images and their edge-detected versions
+    plt.figure(figsize=(18, 9))
+
+    # Original image 1 and edge image 1
+    plt.subplot(221)
+    plt.imshow(cv2.cvtColor(image1, cv2.COLOR_BGR2RGB))  # Convert BGR to RGB for correct color display
+    plt.title('Original Image 1')
+    plt.axis("off")
+
+    plt.subplot(222)
+    plt.imshow(edges1, cmap='gray')  # Edges in grayscale
+    plt.title('Edge Image 1')
+    plt.axis("off")
+
+    # Original image 2 and edge image 2
+    plt.subplot(223)
+    plt.imshow(cv2.cvtColor(image2, cv2.COLOR_BGR2RGB))  # Convert BGR to RGB for correct color display
+    plt.title('Original Image 2')
+    plt.axis("off")
+
+    plt.subplot(224)
+    plt.imshow(edges2, cmap='gray')  # Edges in grayscale
+    plt.title('Edge Image 2')
+    plt.axis("off")
+
+    plt.show()
 ```
-![Screenshot 2024-12-13 204133](https://github.com/user-attachments/assets/7729a36b-f3f4-4bf6-bc44-ec2df6b6bcff)
-![Screenshot 2024-12-13 204149](https://github.com/user-attachments/assets/e31e2b93-62f7-415e-813e-de3e676963d7)
+![image](https://github.com/user-attachments/assets/994a61fc-a9bb-4bf4-a1ae-3a39d3443c9a)
 
-```
-edges = cv2.Canny(image=image, threshold1=100, threshold2=200)
-
-plt.figure(figsize=(18,19))
-plt.subplot(121)
-plt.imshow(image, cmap='gray')
-plt.title('Original')
-plt.axis("off")
-
-plt.subplot(122)
-plt.imshow(edges, cmap='gray')
-plt.title('Edge image')
-plt.axis("off")
-```
-![Screenshot 2024-12-13 204258](https://github.com/user-attachments/assets/bfe659eb-304f-4ef8-9690-b1781fbc1bfe)
 
 
 
