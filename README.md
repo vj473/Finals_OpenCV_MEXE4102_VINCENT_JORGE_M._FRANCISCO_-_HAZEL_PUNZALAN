@@ -7,7 +7,21 @@
 # ABSTRACT
   Edge detection is a critical technique in image processing, used to identify the boundaries of objects within an image. In this project, we apply two common edge detection methods—Sobel and Canny—to visualize the edges of a wolf in a given image. The Sobel operator computes the gradient of pixel intensities to highlight areas with rapid intensity changes, while the Canny edge detector performs a multi-step process that refines edge detection by reducing noise and ensuring more precise boundaries. This study aims to compare the effectiveness of both methods in extracting the wolf’s shape and features, ultimately demonstrating how edge detection can enhance the clarity of an object’s outline. The results of this visualization can be useful in various applications, including wildlife monitoring, object recognition, and automated image analysis.
 # PROJECT METHODS
-
+1. IMAGE ACQUISITION:
+   - A high quality image of a wolf chosen for edge detection.
+2. PREPROCESSING:
+   - Noise Reduction - apply Gaussian blur or other smoothing techniques to reduce noise in the image, which could interfere with edge detection.
+3. EDGE DETECTION METHODS:
+  - Sobel Edge Detection - the Sobel operator uses two filters horizontal and vertical to compute the gradients of pixel intensities in both directions. By applying these filters to the image, the gradients along the horizontal and vertical axes are obtained.
+  - Canny Edge Detection - starts with Gaussian blur to reduce noise, followed by gradient calculation to identify intensity changes. Non-maximum suppression thins the edges by keeping only prominent ones. Double thresholding classifies edges as strong, weak, or non-edges, and edge tracing by hysteresis ensures weak edges are retained only if connected to strong edges, finalizing the process.
+4. COMPARISON OF RESULTS:
+  - Visualize the edges detected using Sobel and Canny side by side.
+  - Analyze the effectiveness of each method in terms of; Edge clarity and sharpness, handling of noise, accuracy of boundary detection arount the wolf.
+5. VISUALIZATION:
+  - Use tools like Matplotlib or OpenCV to display the original image alongside the edge-detected images.
+  - Optionally, overlay the detected edges on the original image to better highlight the wolf's shape.
+6. EVALUATION:
+  - Assess the performance of both edge detection methods qualitatively.
 # CONCLUSION
 * In conclusion, this project successfully explored the principles and implementation of visual edge detection, a critical technique in image processing and computer vision. Using [insert techniques/tools, e.g., Sobel, Canny, or advanced neural networks], the study demonstrated how edge detection enhances the ability to identify object boundaries, shapes, and structural information in images.
 
