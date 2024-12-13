@@ -1,20 +1,25 @@
 # Finals_OpenCV_MEXE4102_VINCENT_JORGE_M._FRANCISCO_-_HAZEL_PUNZALAN
 
 # INTRODUCTION
-Edge detection is a fundamental process in computer vision and image processing, aimed at identifying significant transitions or boundaries within an image. These boundaries often correspond to changes in intensity, color, texture, or depth, representing the edges of objects or features in a scene. The ability to detect edges is critical for various applications, including object recognition, image segmentation, and scene understanding.
+* Edge detection is a fundamental process in computer vision and image processing, aimed at identifying significant transitions or boundaries within an image. These boundaries often correspond to changes in intensity, color, texture, or depth, representing the edges of objects or features in a scene. The ability to detect edges is critical for various applications, including object recognition, image segmentation, and scene understanding.
 
-In essence, edge detection transforms raw image data into a structured representation by highlighting areas of interest. This simplification reduces the computational complexity of subsequent processing tasks while preserving essential geometric information.
+* In essence, edge detection transforms raw image data into a structured representation by highlighting areas of interest. This simplification reduces the computational complexity of subsequent processing tasks while preserving essential geometric information.
 # ABSTRACT
 
 # PROJECT METHODS
 
 # CONCLUSION
+* In conclusion, this project successfully explored the principles and implementation of visual edge detection, a critical technique in image processing and computer vision. Using [insert techniques/tools, e.g., Sobel, Canny, or advanced neural networks], the study demonstrated how edge detection enhances the ability to identify object boundaries, shapes, and structural information in images.
 
+* The results highlighted the effectiveness of edge detection algorithms in isolating key features while maintaining computational efficiency. However, challenges such as handling noisy images and optimizing performance in complex scenarios were noted. These limitations provide avenues for future work, including the integration of advanced denoising techniques and adaptive algorithms to improve robustness.
+
+* Overall, this project underscores the importance of edge detection in diverse applications, from medical imaging to autonomous navigation, and paves the way for further exploration in this vital area of computer vision.
+  
 # ADDITIONAL MATERIALS
 
  # 16 Basic OpenCV projects
 
- Part 1: OpenCV Basics
+ ## Part 1: OpenCV Basics
  ```!git clone https://github.com/vj473/Finals_OpenCV_MEXE4102_VINCENT_JORGE_M._FRANCISCO_-_HAZEL_PUNZALAN.git
 %cd Finals_OpenCV_MEXE4102_VINCENT_JORGE_M._FRANCISCO
 from IPython.display import clear_output
@@ -499,3 +504,88 @@ display = np.hstack((canny_image,erode_image,dilate_image))
 cv2_imshow(display)
 ```
 ![Screenshot 2024-12-13 183833](https://github.com/user-attachments/assets/eb300e84-52a7-4435-831c-fd0edaa2fa3c)
+
+
+## Part 2: Revised Topic 
+
+```
+!git clone https://github.com/vj473/Finals_OpenCV_MEXE4102_VINCENT_JORGE_M._FRANCISCO_-_HAZEL_PUNZALAN.git
+%cd opencvTutorial/
+from IPython.display import clear_output
+clear_output()
+```
+
+```
+import cv2
+from google.colab.patches import cv2_imshow
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Read the Original Image
+image = cv2.imread("/content/Finals_OpenCV_MEXE4102_VINCENT_JORGE_M._FRANCISCO_-_HAZEL_PUNZALAN/OPENCV IMAGES/asong lubo.jpg")
+
+#Ensure the image is loaded successfully
+if image is None:
+  print("Error: The image path is incorrect or the file does not exist.")
+else:
+  # Display the Original Image using cv2_imshow
+  cv2_imshow(image)
+```
+![Screenshot 2024-12-13 204021](https://github.com/user-attachments/assets/26aaad16-e82b-4f75-8c10-dd1063c1447b)
+
+```
+# Convert to graycsale
+img_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+# Blur the image for better edge detection
+img_blur = cv2.GaussianBlur(img_gray, (3,3), 0)
+```
+
+```
+sobelx = cv2.Sobel(src=image, ddepth=cv2.CV_64F, dx=1, dy=0, ksize=5)
+
+sobely = cv2.Sobel(src=image, ddepth=cv2.CV_64F, dx=0, dy=1, ksize=5)
+
+sobelxy = cv2.Sobel(src=image, ddepth=cv2.CV_64F, dx=1, dy=1, ksize=5)
+
+plt.figure(figsize=(18,19))
+plt.subplot(221)
+plt.imshow(image, cmap='gray')
+plt.title('Original')
+plt.axis("off")
+
+plt.subplot(222)
+plt.imshow(sobelxy, cmap='gray')
+plt.title('Sobel X Y')
+plt.axis("off")
+
+plt.subplot(223)
+plt.imshow(sobelx, cmap='gray')
+plt.title('Sobel X')
+plt.axis("off")
+
+plt.subplot(224)
+plt.imshow(sobely, cmap='gray')
+plt.title('Sobel Y')
+plt.axis("off")
+```
+![Screenshot 2024-12-13 204133](https://github.com/user-attachments/assets/7729a36b-f3f4-4bf6-bc44-ec2df6b6bcff)
+![Screenshot 2024-12-13 204149](https://github.com/user-attachments/assets/e31e2b93-62f7-415e-813e-de3e676963d7)
+
+```
+edges = cv2.Canny(image=image, threshold1=100, threshold2=200)
+
+plt.figure(figsize=(18,19))
+plt.subplot(121)
+plt.imshow(image, cmap='gray')
+plt.title('Original')
+plt.axis("off")
+
+plt.subplot(122)
+plt.imshow(edges, cmap='gray')
+plt.title('Edge image')
+plt.axis("off")
+```
+![Screenshot 2024-12-13 204258](https://github.com/user-attachments/assets/bfe659eb-304f-4ef8-9690-b1781fbc1bfe)
+
+
+
