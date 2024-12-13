@@ -642,9 +642,8 @@ process_and_display(image1, "Image 1")
 
 # Process and display the second image
 process_and_display(image2, "Image 2")
+```
 
-![image](https://github.com/user-attachments/assets/1edb0a9b-6841-40ec-b1be-b0e0f70d4549)
-![image](https://github.com/user-attachments/assets/a4ad517f-f258-4fc4-9245-42612f2e5436)
 
 
 ```
