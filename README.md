@@ -192,17 +192,16 @@ cv2_imshow(image)
 ```import cv2
 from google.colab.patches import cv2_imshow
 
-
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-
-# img = cv2.imread("images/person.jpg")
 img = cv2.imread("OPENCV IMAGES/gang.jpg")
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-faces = face_cascade.detectMultiScale(gray, 1.3, 4)
-# print (faces)
+# Detect faces
+faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+
+# Draw rectangles around faces
 for (x, y, w, h) in faces:
-  cv2.rectangle(img, (x,y), (x+w, y+h), (255,0,0), 3)
+    cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 3)
 
 cv2_imshow(img)
 ```
