@@ -523,29 +523,66 @@ cv2_imshow(display)
 ## Part 2
 
 ```
+# Clone the GitHub repository
 !git clone https://github.com/vj473/Finals_OpenCV_MEXE4102_VINCENT_JORGE_M._FRANCISCO_-_HAZEL_PUNZALAN.git
-%cd opencvTutorial/
+
+# Change directory into the cloned repository (ensure the folder name matches the cloned repo)
+%cd Finals_OpenCV_MEXE4102_VINCENT_JORGE_M._FRANCISCO_-_HAZEL_PUNZALAN/
+
+# Clear the output (useful for Jupyter notebooks)
 from IPython.display import clear_output
 clear_output()
+
+# Print a success message
+print("Repository cloned and directory changed successfully!")
 ```
 
 ```
+import os
 import cv2
-from google.colab.patches import cv2_imshow
-import numpy as np
 import matplotlib.pyplot as plt
 
-# Read the Original Image
-image = cv2.imread("/content/Finals_OpenCV_MEXE4102_VINCENT_JORGE_M._FRANCISCO_-_HAZEL_PUNZALAN/OPENCV IMAGES/asong lubo.jpg")
+# Print the current working directory to ensure the correct folder
+print("Current working directory:", os.getcwd())
 
-#Ensure the image is loaded successfully
-if image is None:
-  print("Error: The image path is incorrect or the file does not exist.")
+# Define relative paths to the images (since they are in the same folder as the script)
+image1_path = "asong lubo.jpg"
+image2_path = "wolf.jpg"
+
+# Check if the images exist at the given paths
+if os.path.exists(image1_path):
+    print(f"Image 1 exists at: {image1_path}")
+    # Load and display the first image
+    image1 = cv2.imread(image1_path)
+    if image1 is not None:
+        print("First image loaded successfully.")
+        plt.imshow(cv2.cvtColor(image1, cv2.COLOR_BGR2RGB))
+        plt.title("First Image")
+        plt.axis('off')
+        plt.show()
+    else:
+        print(f"Error: Unable to load the first image '{image1_path}'.")
 else:
-  # Display the Original Image using cv2_imshow
-  cv2_imshow(image)
+    print(f"Error: '{image1_path}' does not exist.")
+
+if os.path.exists(image2_path):
+    print(f"Image 2 exists at: {image2_path}")
+    # Load and display the second image
+    image2 = cv2.imread(image2_path)
+    if image2 is not None:
+        print("Second image loaded successfully.")
+        plt.imshow(cv2.cvtColor(image2, cv2.COLOR_BGR2RGB))
+        plt.title("Second Image")
+        plt.axis('off')
+        plt.show()
+    else:
+        print(f"Error: Unable to load the second image '{image2_path}'.")
+else:
+    print(f"Error: '{image2_path}' does not exist.")
 ```
-![Screenshot 2024-12-13 204021](https://github.com/user-attachments/assets/26aaad16-e82b-4f75-8c10-dd1063c1447b)
+![image](https://github.com/user-attachments/assets/b5aeedfb-654f-4d70-888b-e87da23c164b)
+![image](https://github.com/user-attachments/assets/32383776-52d6-49f4-b01b-9753dedbe7c8)
+
 
 ```
 # Convert to graycsale
