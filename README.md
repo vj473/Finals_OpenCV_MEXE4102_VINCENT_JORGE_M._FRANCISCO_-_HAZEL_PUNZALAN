@@ -5,7 +5,7 @@
 
 * In essence, edge detection transforms raw image data into a structured representation by highlighting areas of interest. This simplification reduces the computational complexity of subsequent processing tasks while preserving essential geometric information.
 # ABSTRACT
-
+  Edge detection is a critical technique in image processing, used to identify the boundaries of objects within an image. In this project, we apply two common edge detection methods—Sobel and Canny—to visualize the edges of a wolf in a given image. The Sobel operator computes the gradient of pixel intensities to highlight areas with rapid intensity changes, while the Canny edge detector performs a multi-step process that refines edge detection by reducing noise and ensuring more precise boundaries. This study aims to compare the effectiveness of both methods in extracting the wolf’s shape and features, ultimately demonstrating how edge detection can enhance the clarity of an object’s outline. The results of this visualization can be useful in various applications, including wildlife monitoring, object recognition, and automated image analysis.
 # PROJECT METHODS
 
 # CONCLUSION
