@@ -520,7 +520,7 @@ cv2_imshow(display)
 ![Screenshot 2024-12-13 183833](https://github.com/user-attachments/assets/eb300e84-52a7-4435-831c-fd0edaa2fa3c)
 
 
-## Part 2: Revised Topic 
+## Part 2
 
 ```
 !git clone https://github.com/vj473/Finals_OpenCV_MEXE4102_VINCENT_JORGE_M._FRANCISCO_-_HAZEL_PUNZALAN.git
