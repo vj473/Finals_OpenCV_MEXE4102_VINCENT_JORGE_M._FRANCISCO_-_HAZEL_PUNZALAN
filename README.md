@@ -643,7 +643,8 @@ process_and_display(image1, "Image 1")
 # Process and display the second image
 process_and_display(image2, "Image 2")
 ```
-
+![image](https://github.com/user-attachments/assets/1e1c8a03-cc05-4b16-b0bf-6c5e728d053b)
+![image](https://github.com/user-attachments/assets/0019a679-c082-4fdb-99ef-8c7b310a1540)
 
 
 ```
